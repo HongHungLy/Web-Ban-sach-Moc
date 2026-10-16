@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mộc Books - không gian dành cho những người yêu sách.">
+  <title>Mộc Books — Chạm vào thế giới qua từng trang sách</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar"><div class="wrap"><span>Gửi trọn tri thức, trao đầy yêu thương <strong>· Miễn phí vận chuyển từ 300.000đ</strong></span><span>Hotline: 028 7300 1986</span></div></div>
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>Mộc Books</a>
+      <nav class="nav" aria-label="Điều hướng chính"><a href="#sach-moi">Sách mới</a><a href="#danh-muc">Danh mục</a><a href="#sach-ban-chay">Bán chạy</a><a href="#gioi-thieu">Về Mộc</a></nav>
+      <div class="header-actions">
+        <a class="icon-link" href="account.html" aria-label="Tài khoản">♙<span id="header-user-name">Tài khoản</span></a>
+        <a class="icon-link" href="cart.html" aria-label="Giỏ hàng">♧<span>Giỏ hàng</span><span class="cart-badge" id="header-cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-panel">
+        <div class="hero-copy">
+          <span class="eyebrow">Một trang sách, một miền khám phá</span>
+          <h1>Để mỗi ngày<br>đều có điều hay.</h1>
+          <p>Những cuốn sách được chọn bằng sự tò mò, dành cho những tâm hồn luôn muốn lớn lên và nhìn thế giới theo một cách khác.</p>
+          <a class="button" href="#sach-moi">Khám phá tủ sách <span aria-hidden="true">&nbsp;→</span></a>
+        </div>
+        <div class="hero-art" aria-label="Minh họa những cuốn sách">
+          <div class="book"><div class="book-label">Những<br>ngày<br>thơ ấu<small>Hồi ức dịu dàng</small></div></div>
+          <div class="book"><div class="book-label">Đi tìm<br>lẽ sống<small>Viktor E. Frankl</small></div></div>
+          <div class="book"><div class="book-label">Khu vườn<br>bí mật<small>F. H. Burnett</small></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="benefits"><div class="wrap benefit-row">
+      <div class="benefit"><span class="benefit-icon">↗</span><div><strong>Giao hàng toàn quốc</strong>Nhận sách tận nhà, gói ghém cẩn thận</div></div>
+      <div class="benefit"><span class="benefit-icon">♡</span><div><strong>Sách chọn kỹ càng</strong>Mỗi tựa sách là một lời giới thiệu</div></div>
+      <div class="benefit"><span class="benefit-icon">✦</span><div><strong>Đọc sách thêm vui</strong>Ưu đãi nhỏ cho những bạn đọc thân quen</div></div>
+    </div></section>
+    <section class="section wrap" id="danh-muc">
+      <div class="section-heading"><div><span class="eyebrow">Tìm theo điều bạn yêu</span><h2>Góc sách của bạn</h2><p>Mỗi chủ đề mở ra một cánh cửa mới.</p></div><a class="text-link" href="#sach-moi" id="view-all-cats">Xem tất cả →</a></div>
+      <div class="category-grid">
+        <a class="category-card" href="#sach-moi" data-category="Văn học"><span class="category-icon">📖</span><h3>Văn học</h3><p>1.248 tựa sách</p></a>
+        <a class="category-card" href="#sach-moi" data-category="Kỹ năng sống"><span class="category-icon">🌿</span><h3>Kỹ năng sống</h3><p>864 tựa sách</p></a>
+        <a class="category-card" href="#sach-moi" data-category="Khoa học"><span class="category-icon">🔭</span><h3>Khoa học &amp; khám phá</h3><p>526 tựa sách</p></a>
+        <a class="category-card" href="#sach-moi" data-category="Sách thiếu nhi"><span class="category-icon">🧸</span><h3>Sách thiếu nhi</h3><p>397 tựa sách</p></a>
+      </div>
+    </section>
+    <section class="section wrap" id="sach-moi">
+      <div class="section-heading"><div><span class="eyebrow">Tủ sách Mộc</span><h2>Chọn một cuốn cho hôm nay</h2><p id="search-results-info">Sách hay được tìm thấy từ một lần dừng chân.</p></div><a class="text-link" href="#sach-ban-chay">Sách bán chạy →</a></div>
+      <div class="filters" aria-label="Bộ lọc tìm sách">
+        <div class="field search-field"><label for="search">Tìm tên sách hoặc tác giả</label><input id="search" type="search" placeholder="Ví dụ: Nhà giả kim, Nguyễn Nhật Ánh"></div>
+        <div class="field"><label for="category">Danh mục</label><select id="category"><option value="">Tất cả danh mục</option><option value="Văn học">Văn học</option><option value="Kỹ năng sống">Kỹ năng sống</option><option value="Khoa học">Khoa học</option><option value="Sách thiếu nhi">Sách thiếu nhi</option></select></div>
+        <div class="field"><label for="price">Khoảng giá</label><select id="price"><option value="">Mọi mức giá</option><option value="under100">Dưới 100.000đ</option><option value="100to200">100.000 – 200.000đ</option><option value="above200">Trên 200.000đ</option></select></div>
+        <button class="button" id="filter-btn" type="button">Tìm sách</button>
+      </div>
+      <div class="product-grid" id="product-list">
+        <!-- Rendered by main.js -->
+      </div>
+      <div class="pagination" id="product-pagination" aria-label="Phân trang">
+        <!-- Rendered by main.js -->
+      </div>
+    </section>
+    <section class="section wrap" id="chi-tiet">
+      <div class="section-heading"><div><span class="eyebrow">Một cuốn sách đáng nhớ</span><h2>Lật mở câu chuyện</h2></div></div>
+      <article class="detail-panel">
+        <div class="detail-cover" id="detail-cover-box"><div class="product-cover cover-olive"><div class="cover-title">ĐI TÌM<br>LẼ SỐNG<small>VIKTOR E. FRANKL</small></div></div></div>
+        <div class="detail-copy">
+          <span class="eyebrow" id="detail-category">Sách kỹ năng · Tâm lý</span>
+          <h2 id="detail-title">Đi tìm lẽ sống</h2>
+          <div class="rating" id="detail-rating">★★★★★ <span>4.9 · 128 đánh giá</span></div>
+          <span class="price" id="detail-price">89.000đ <span class="old-price">110.000đ</span></span>
+          <p id="detail-desc">Cuốn sách kể lại hành trình phi thường của Viktor Frankl, đồng thời chia sẻ một niềm tin giản dị: con người có thể tìm thấy ý nghĩa ngay cả trong những hoàn cảnh khó khăn nhất.</p>
+          <div class="detail-meta">
+            <div><span>Tác giả</span><br><b id="detail-author">Viktor E. Frankl</b></div>
+            <div><span>Nhà xuất bản</span><br><b id="detail-publisher">NXB Trẻ</b></div>
+            <div><span>Hình thức</span><br><b id="detail-cover-type">Bìa mềm</b></div>
+            <div><span>Số trang</span><br><b id="detail-pages">224 trang</b></div>
+          </div>
+          <button class="button" id="detail-add-btn" type="button">Thêm vào giỏ hàng</button>
+        </div>
+      </article>
+    </section>
+    <section class="wrap" id="gioi-thieu"><div class="newsletter"><div><h2>Thư nhỏ từ Mộc</h2><p>Một chút cảm hứng đọc sách gửi đến bạn mỗi tháng.</p></div><div class="newsletter-form"><div class="field"><input type="email" placeholder="Địa chỉ email của bạn" aria-label="Địa chỉ email"></div><button class="button" type="button" onclick="alert('Cảm ơn bạn đã đăng ký nhận bản tin từ Mộc Books!')">Đăng ký nhận tin</button></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-row"><div><a class="brand" href="index.html"><span class="brand-mark">M</span>Mộc Books</a><p>Một góc nhỏ cho những câu chuyện lớn.</p></div><div class="footer-links"><a href="account.html">Tài khoản</a><a href="cart.html">Giỏ hàng</a><a href="admin-login.html">Trang quản trị</a></div></div></footer>
+  <script src="main.js"></script>
+</body>
+</html>

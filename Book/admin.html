@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản trị cửa hàng — Mộc Books</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a class="brand" href="admin.html"><span class="brand-mark">M</span>Mộc Books</a>
+      <div class="side-label">Tổng quan</div>
+      <nav class="side-nav" aria-label="Điều hướng quản trị">
+        <a class="current" href="#tong-quan">▦ &nbsp; Bảng điều khiển</a>
+        <a href="#don-hang">▤ &nbsp; Đơn hàng <span style="float:right" id="sidebar-order-count">0</span></a>
+        <a href="#san-pham">▣ &nbsp; Sản phẩm</a>
+        <a href="#khach-hang">♙ &nbsp; Khách hàng</a>
+        <a href="#thong-ke">▥ &nbsp; Thống kê</a>
+      </nav>
+      <div class="side-label">Cửa hàng</div>
+      <nav class="side-nav">
+        <a href="index.html">↗ &nbsp; Xem cửa hàng</a>
+        <a href="#ho-tro">? &nbsp; Trợ giúp</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-top">
+        <span class="muted">Quản trị / Tổng quan</span>
+        <div class="admin-user">
+          <div class="avatar">MA</div>
+          <span>Minh Anh · Quản trị viên</span>
+          <a class="text-link" id="admin-logout-btn" href="admin-login.html">Đăng xuất</a>
+        </div>
+      </header>
+      <div class="admin-content" id="tong-quan">
+        <div class="admin-title">
+          <div>
+            <h1>Chào buổi sáng, Minh Anh 👋</h1>
+            <p>Tổng quan hoạt động cửa hàng sách Mộc Books.</p>
+          </div>
+          <button class="button button-small" id="top-add-product-btn" type="button">＋ Thêm sản phẩm</button>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-card">
+            <p>Doanh thu tháng này</p>
+            <strong id="stat-total-revenue">0đ</strong>
+            <small>Tổng giá trị các đơn đặt hàng</small>
+          </article>
+          <article class="stat-card">
+            <p>Tổng số đơn hàng</p>
+            <strong id="stat-total-orders">0</strong>
+            <small>Được cập nhật tự động</small>
+          </article>
+          <article class="stat-card">
+            <p>Sản phẩm đang bán</p>
+            <strong id="stat-active-products">0</strong>
+            <small>Không bao gồm sách đã ẩn</small>
+          </article>
+          <article class="stat-card">
+            <p>Khách hàng bạn đọc</p>
+            <strong id="stat-total-customers">0</strong>
+            <small>Người dùng trong hệ thống</small>
+          </article>
+        </div>
+        <div class="admin-columns">
+          <section class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Doanh thu theo thời gian</h2>
+              <a href="#thong-ke">30 ngày gần đây⌄</a>
+            </div>
+            <div class="bar-chart" aria-label="Biểu đồ doanh thu minh họa">
+              <span class="bar" style="height:44%"></span>
+              <span class="bar" style="height:61%"></span>
+              <span class="bar" style="height:38%"></span>
+              <span class="bar" style="height:72%"></span>
+              <span class="bar" style="height:55%"></span>
+              <span class="bar" style="height:85%"></span>
+              <span class="bar" style="height:63%"></span>
+              <span class="bar" style="height:96%"></span>
+              <span class="bar" style="height:70%"></span>
+              <span class="bar" style="height:79%"></span>
+              <span class="bar" style="height:59%"></span>
+              <span class="bar" style="height:100%"></span>
+            </div>
+            <div class="chart-labels">
+              <span>01/05</span><span>05/05</span><span>10/05</span><span>15/05</span><span>20/05</span><span>25/05</span>
+            </div>
+          </section>
+          <section class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Sách được yêu thích</h2>
+              <a href="#san-pham">Xem danh sách →</a>
+            </div>
+            <div class="mini-rows" id="admin-top-books">
+              <!-- Rendered by main.js -->
+            </div>
+          </section>
+        </div>
+
+        <!-- QUẢN LÝ ĐƠN HÀNG -->
+        <section class="admin-panel" id="don-hang">
+          <div class="admin-panel-head">
+            <h2>Quản lý đơn hàng</h2>
+            <span class="muted" style="font-size:11px">Trạng thái chỉ cập nhật xuôi: Chưa xác nhận → Đã xác nhận → Đã giao (hoặc Đã hủy)</span>
+          </div>
+          <div class="admin-filters">
+            <span class="admin-filter-label">Bộ lọc đơn hàng · Trạng thái · Khoảng thời gian · Địa điểm giao hàng</span>
+            <div class="field">
+              <select id="admin-order-status-filter" aria-label="Lọc trạng thái">
+                <option value="">Tất cả trạng thái</option>
+                <option value="Chưa xác nhận">Chưa xác nhận</option>
+                <option value="Đã xác nhận">Đã xác nhận</option>
+                <option value="Đã giao">Đã giao</option>
+                <option value="Đã hủy">Đã hủy</option>
+              </select>
+            </div>
+            <div class="field"><input type="date" id="admin-order-from-date" aria-label="Từ ngày"></div>
+            <div class="field"><input type="date" id="admin-order-to-date" aria-label="Đến ngày"></div>
+            <div class="field">
+              <select id="admin-order-location-filter" aria-label="Lọc địa điểm">
+                <option value="">Tất cả địa điểm</option>
+                <option value="Quận 1">Quận 1</option>
+                <option value="Quận 3">Quận 3</option>
+                <option value="Bình Thạnh">Quận Bình Thạnh</option>
+                <option value="Thủ Đức">TP. Thủ Đức</option>
+                <option value="Hà Nội">Hà Nội</option>
+              </select>
+            </div>
+            <button class="button button-small" id="admin-order-reset-filter" type="button" style="background:#6c766d">Đặt lại lọc</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Ngày đặt</th>
+                  <th>Địa điểm</th>
+                  <th>Tổng tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Cập nhật (Chỉ đi xuôi)</th>
+                  <th>Chi tiết</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-tbody">
+                <!-- Rendered by main.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- QUẢN LÝ SẢN PHẨM -->
+        <section class="admin-panel" id="san-pham" style="margin-top:20px">
+          <div class="admin-panel-head">
+            <h2>Quản lý sản phẩm sách</h2>
+            <button class="button button-small" id="admin-open-add-book-btn" type="button">＋ Thêm sản phẩm mới</button>
+          </div>
+          <div class="admin-filters">
+            <div class="field" style="width:260px">
+              <input type="search" id="admin-book-search" placeholder="Tìm tên sách, tác giả..." aria-label="Tìm sản phẩm">
+            </div>
+            <div class="field">
+              <select id="admin-book-cat-filter" aria-label="Danh mục">
+                <option value="">Tất cả danh mục</option>
+                <option value="Văn học">Văn học</option>
+                <option value="Kỹ năng sống">Kỹ năng sống</option>
+                <option value="Khoa học">Khoa học</option>
+                <option value="Sách thiếu nhi">Sách thiếu nhi</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Danh mục</th>
+                  <th>Giá bán</th>
+                  <th>Tồn kho</th>
+                  <th>Đã bán</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="admin-books-tbody">
+                <!-- Rendered by main.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FORM THÊM / SỬA SẢN PHẨM -->
+        <div class="admin-split" style="margin-top:20px">
+          <section class="admin-panel" id="form-san-pham">
+            <div class="admin-panel-head">
+              <h2 id="product-form-heading">Thông tin sản phẩm · Thêm / Chỉnh sửa</h2>
+              <button class="button button-small button-light" id="product-form-reset-btn" type="button">Làm mới form</button>
+            </div>
+            <form id="product-edit-form" class="admin-split" style="gap:20px">
+              <input type="hidden" id="pf-id">
+              <div class="admin-form-grid">
+                <div class="field full">
+                  <label class="form-label" for="pf-title">Tên sách (*)</label>
+                  <input id="pf-title" type="text" placeholder="Nhập tên sách..." required>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="pf-category">Phân loại danh mục (*)</label>
+                  <select id="pf-category" required>
+                    <option value="Văn học">Văn học</option>
+                    <option value="Kỹ năng sống">Kỹ năng sống</option>
+                    <option value="Khoa học">Khoa học</option>
+                    <option value="Sách thiếu nhi">Sách thiếu nhi</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="pf-price">Giá bán (VNĐ) (*)</label>
+                  <input id="pf-price" type="number" placeholder="Ví dụ: 89000" required>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="pf-author">Tác giả (*)</label>
+                  <input id="pf-author" type="text" placeholder="Tên tác giả..." required>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="pf-stock">Số lượng tồn kho</label>
+                  <input id="pf-stock" type="number" placeholder="42" value="20">
+                </div>
+                <div class="field full">
+                  <label class="form-label" for="pf-desc">Mô tả tóm tắt</label>
+                  <textarea id="pf-desc" placeholder="Giới thiệu đôi nét về tác phẩm..."></textarea>
+                </div>
+                <div class="field full">
+                  <button class="button" id="pf-save-btn" type="submit" style="width:100%">Lưu thông tin sản phẩm</button>
+                </div>
+              </div>
+              <div>
+                <label class="form-label">Upload hình ảnh bìa sách</label>
+                <input type="file" id="pf-file" accept="image/*" style="font-size:11px;margin-bottom:10px;width:100%">
+                <div class="image-preview" id="pf-preview-container">
+                  <div id="pf-preview-inner">
+                    <div class="cart-mini-cover cover-olive" style="margin:0 auto 8px">BÌA SÁCH</div>
+                    <span>Xem trước hình ảnh bìa</span>
+                  </div>
+                </div>
+                <p style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5">
+                  Có thể chọn file ảnh từ máy hoặc hệ thống sẽ tự tạo bìa màu tối giản theo tên sách.
+                </p>
+              </div>
+            </form>
+          </section>
+
+          <!-- QUẢN LÝ USER -->
+          <section class="admin-panel" id="khach-hang">
+            <div class="admin-panel-head">
+              <h2>Quản lý khách hàng (User)</h2>
+              <button class="button button-small" id="admin-add-user-btn" type="button">＋ Thêm bạn đọc</button>
+            </div>
+            <div class="admin-filters">
+              <div class="field" style="width:100%">
+                <input type="search" id="admin-user-search" placeholder="Tìm tên, email khách hàng..." aria-label="Tìm khách hàng">
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Khách hàng</th>
+                    <th>Email / SĐT</th>
+                    <th>Số đơn</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-tbody">
+                  <!-- Rendered by main.js -->
+                </tbody>
+              </table>
+            </div>
+            <div class="admin-note" style="margin-top:13px">
+              Quản trị viên có thể thêm bạn đọc mới, chỉnh sửa thông tin hoặc bấm Khóa/Mở khóa tài khoản ngay tại bảng.
+            </div>
+          </section>
+        </div>
+
+        <!-- THỐNG KÊ TOP 5 KHÁCH HÀNG -->
+        <section class="admin-panel" id="thong-ke" style="margin-top:20px">
+          <div class="admin-panel-head">
+            <h2>Thống kê 5 khách hàng có mức mua cao nhất</h2>
+            <span class="muted" style="font-size:11px">Xếp hạng giảm dần theo tổng tiền mua trong khoảng thời gian</span>
+          </div>
+          <div class="admin-filters">
+            <span class="admin-filter-label">Chọn khoảng thời gian thống kê đơn hàng</span>
+            <div class="field"><input type="date" id="stat-from-date" aria-label="Ngày bắt đầu thống kê"></div>
+            <div class="field"><input type="date" id="stat-to-date" aria-label="Ngày kết thúc thống kê"></div>
+            <button class="button button-small" id="stat-run-btn" type="button">Xem thống kê</button>
+            <button class="button button-small button-light" id="stat-reset-btn" type="button">Xem toàn thời gian</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hạng</th>
+                  <th>Khách hàng</th>
+                  <th>Số đơn</th>
+                  <th>Đơn hàng gần nhất</th>
+                  <th>Tổng tiền mua</th>
+                  <th>Chi tiết đơn hàng</th>
+                </tr>
+              </thead>
+              <tbody id="admin-top5-tbody">
+                <!-- Rendered by main.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- TRỢ GIÚP & HƯỚNG DẪN -->
+        <section class="admin-panel" id="ho-tro" style="margin-top:20px">
+          <div class="admin-panel-head">
+            <h2>Trợ giúp &amp; Hướng dẫn quản trị</h2>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.8">
+            • <strong>Cập nhật trạng thái đơn hàng:</strong> Theo quy định chỉ có thể cập nhật xuôi: <code>Chưa xác nhận → Đã xác nhận → Đã giao</code> (hoặc Hủy đơn).<br>
+            • <strong>Xóa sản phẩm:</strong> Nếu sản phẩm đã phát sinh đơn mua, hệ thống sẽ tự động <em>Ẩn sản phẩm</em> khỏi cửa hàng bạn đọc. Nếu chưa bán cuốn nào, hệ thống sẽ xác nhận và xóa hẳn.<br>
+            • <strong>Quản lý người dùng:</strong> Bấm trực tiếp vào trạng thái hoặc nút thao tác để chuyển đổi giữa <em>Hoạt động</em> và <em>Đã khóa</em>.
+          </p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal xem chi tiết đơn hàng -->
+  <div class="mb-modal-overlay" id="order-detail-modal">
+    <div class="mb-modal">
+      <button class="mb-modal-close" onclick="closeOrderDetailModal()">×</button>
+      <span class="eyebrow">Chi tiết đơn hàng</span>
+      <h2 id="modal-order-id" style="margin:6px 0 16px">#MB-0000</h2>
+      <div id="modal-order-content" style="font-size:13px;line-height:1.7">
+        <!-- Rendered by main.js -->
+      </div>
+      <div style="margin-top:20px;text-align:right">
+        <button class="button button-small button-light" type="button" onclick="closeOrderDetailModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
