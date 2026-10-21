@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thông tin Ấn phẩm — Quản trị Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">M</span>Mộc Admin</a>
+      <div class="side-label">QUẢN LÝ HỆ THỐNG</div>
+      <nav class="side-nav">
+        <a href="dashboard.html">📊 Tổng quan</a>
+        <a href="orders.html">📦 Quản lý Đơn hàng</a>
+        <a class="current" href="products.html">📚 Quản lý Sách &amp; Tủ sách</a>
+        <a href="customers.html">👥 Quản lý Bạn đọc / User</a>
+        <a href="stats.html">📈 Báo cáo Thống kê Top 5</a>
+      </nav>
+      <div class="side-label" style="margin-top:20px">LỐI TẮT</div>
+      <nav class="side-nav">
+        <a href="../index.html" target="_blank">🌐 Xem cửa hàng bạn đọc ↗</a>
+        <a href="javascript:void(0)" id="admin-logout-btn" style="color:#e89f92">🚪 Đăng xuất</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-top">
+        <div class="muted">Thêm mới &amp; Cập nhật thông tin ấn phẩm</div>
+        <div class="admin-user">
+          <div class="avatar">AD</div>
+          <div>
+            <strong>Quản trị viên</strong>
+            <div style="font-size:10px;color:var(--muted)">admin@mocbooks.vn</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content" style="max-width:920px">
+        <div class="admin-title">
+          <div>
+            <h1 id="product-form-heading">Thêm ấn phẩm mới</h1>
+            <p>Nhập thông tin chi tiết, phân loại, hình thức bìa và giá bán cho tác phẩm.</p>
+          </div>
+          <div>
+            <a class="button button-small" href="products.html" style="background:#eef2eb;color:#395041;border:1px solid #dce0da">← Quay lại kho sách</a>
+          </div>
+        </div>
+
+        <div class="admin-panel">
+          <form id="product-edit-form">
+            <div class="admin-form-grid">
+              <!-- Tên sách -->
+              <div class="field full">
+                <label for="pf-title">Tên tựa sách (*)</label>
+                <input type="text" id="pf-title" placeholder="Ví dụ: Chiến binh cầu vồng" required>
+              </div>
+
+              <!-- Tác giả -->
+              <div class="field">
+                <label for="pf-author">Tác giả (*)</label>
+                <input type="text" id="pf-author" placeholder="Ví dụ: Andrea Hirata" required>
+              </div>
+
+              <!-- Phân loại -->
+              <div class="field">
+                <label for="pf-category">Phân loại thể loại (*)</label>
+                <select id="pf-category" required>
+                  <option value="Văn học">Văn học</option>
+                  <option value="Kỹ năng sống">Kỹ năng sống</option>
+                  <option value="Khoa học">Khoa học</option>
+                  <option value="Sách thiếu nhi">Sách thiếu nhi</option>
+                </select>
+              </div>
+
+              <!-- Hình thức (Bìa mềm / Bìa cứng) -->
+              <div class="field">
+                <label for="pf-cover-type">Hình thức ấn phẩm (*)</label>
+                <select id="pf-cover-type" required>
+                  <option value="Bìa mềm">Bìa mềm</option>
+                  <option value="Bìa cứng">Bìa cứng</option>
+                </select>
+              </div>
+
+              <!-- Đơn giá có định dạng phân cách hàng nghìn tự động khi nhập -->
+              <div class="field">
+                <label for="pf-price">Giá niêm yết (VNĐ) (*)</label>
+                <input type="text" id="pf-price" class="price-format" placeholder="Ví dụ: 125.000" inputmode="numeric" required>
+              </div>
+
+              <!-- Số lượng kho -->
+              <div class="field">
+                <label for="pf-stock">Số lượng trong kho</label>
+                <input type="number" id="pf-stock" placeholder="Ví dụ: 30" min="0" value="25">
+              </div>
+
+              <!-- Ảnh bìa sách (Giao diện UI - Không có chức năng lưu file thực tế) -->
+              <div class="field full">
+                <label>Ảnh bìa tác phẩm (Giao diện xem trước minh họa)</label>
+                <div style="display:flex;gap:15px;align-items:center;background:#f8f9f6;padding:12px;border:1px dashed #cdd6ca;border-radius:10px">
+                  <div class="cart-mini-cover cover-olive" style="width:50px;height:70px;flex-shrink:0;font-size:10px">
+                    BÌA MẪU
+                  </div>
+                  <div style="flex:1">
+                    <input type="file" accept="image/*" style="font-size:12px;border:none;background:none;padding:0">
+                    <p style="margin:4px 0 0;font-size:11px;color:var(--muted)">Định dạng hỗ trợ: JPG, PNG, WebP (Giao diện xem trước demo).</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mô tả tóm tắt nội dung -->
+              <div class="field full">
+                <label for="pf-desc">Tóm tắt nội dung tác phẩm</label>
+                <textarea id="pf-desc" rows="4" placeholder="Nhập đôi nét giới thiệu về cuốn sách..."></textarea>
+              </div>
+            </div>
+
+            <!-- Nút Lưu (Giao diện mẫu) -->
+            <div style="margin-top:24px;display:flex;justify-content:flex-end;gap:12px">
+              <a class="button button-small" href="products.html" style="background:#eef2eb;color:#395041;border:1px solid #dce0da">Hủy bỏ</a>
+              <button class="button" type="submit" style="padding:0 28px">Lưu thông tin</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>
