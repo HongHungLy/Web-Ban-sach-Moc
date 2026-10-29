@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giỏ hàng &amp; Thanh toán — Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+      
+      <!-- Tìm kiếm nhanh trên Header -->
+      <form class="search-bar-basic" id="quick-search-form" style="max-width:320px;flex:1;margin:0 15px">
+        <input type="search" id="quick-search-input" placeholder="Tìm tên sách, tác giả..." aria-label="Tìm kiếm nhanh">
+        <button class="button button-small" type="submit" style="padding:0 14px;height:32px">Tìm</button>
+      </form>
+
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="books.html">Tủ sách</a>
+        <a href="categories.html">Danh mục</a>
+        <a href="orders.html">Đơn mua</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" id="header-account-link" href="login.html" aria-label="Tài khoản">
+          <span>♙</span><span id="header-user-name">Tài khoản</span>
+        </a>
+        <a class="icon-link" href="cart.html" aria-label="Giỏ hàng" style="color:var(--green);font-weight:700">
+          <span>♧</span><span>Giỏ hàng</span>
+          <span class="cart-badge" id="header-cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:24px;padding-bottom:50px">
+    <div style="margin-bottom:16px;font-size:13px;color:var(--muted)">
+      <a href="../index.html" style="color:var(--green)">Trang chủ</a> / 
+      <span style="color:var(--ink)">Giỏ hàng &amp; Đặt mua</span>
+    </div>
+
+    <div class="page-hero" style="padding:10px 0 25px">
+      <span class="eyebrow">Giỏ sách của bạn</span>
+      <h1>Giỏ hàng <span id="cart-count-label" style="font-size:18px;color:var(--muted);font-weight:400">(0 sản phẩm)</span></h1>
+    </div>
+
+    <div class="cart-layout">
+      <!-- Cột trái: Danh sách sản phẩm & Thông tin nhận hàng / Thanh toán -->
+      <div>
+        <div class="panel" style="margin-bottom:20px">
+          <h2 style="font-size:18px;margin-bottom:16px">Các cuốn sách đã chọn</h2>
+          <div class="cart-items" id="cart-items-container">
+            <!-- Rendered by main.js -->
+          </div>
+        </div>
+
+        <!-- Cảnh báo khi chưa đăng nhập -->
+        <div id="cart-guest-warning" style="display:none;background:#fbf3e8;border:1px solid #e5cba7;padding:16px 20px;border-radius:12px;margin-bottom:20px;color:#7e5223;font-size:13px;line-height:1.6">
+          <strong>⚠️ Yêu cầu tài khoản để đặt hàng:</strong> Bạn hiện chưa đăng nhập. Khách chưa có tài khoản chỉ được xem sản phẩm. Để hoàn tất đặt mua sách, vui lòng 
+          <a href="login.html?redirect=cart.html" style="color:var(--green);font-weight:700;text-decoration:underline">Đăng nhập ngay</a> hoặc 
+          <a href="register.html?redirect=cart.html" style="color:var(--green);font-weight:700;text-decoration:underline">Tạo tài khoản mới</a>.
+        </div>
+
+        <!-- Thông tin người mua và Lựa chọn địa chỉ -->
+        <div class="panel" style="margin-bottom:20px">
+          <h2 style="font-size:18px;margin-bottom:12px">Thông tin người mua hàng</h2>
+          
+          <div style="background:#f6f8f5;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:13px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <span>Đang đăng nhập: </span><strong id="cart-user-name">Nguyễn Minh Anh</strong><br>
+              <span style="color:var(--muted)" id="cart-user-email">minhanh@example.com</span> · <span style="color:var(--muted)" id="cart-user-phone">0903 123 456</span>
+            </div>
+            <a href="account.html" class="text-link" style="font-size:12px">Đổi tài khoản</a>
+          </div>
+
+          <label class="form-label" style="margin-bottom:10px">Chọn địa chỉ giao nhận:</label>
+          <div class="address-options">
+            <!-- Địa chỉ mặc định của tài khoản -->
+            <label class="address-choice selected" id="label-address-default">
+              <input type="radio" name="address_choice" value="default" checked>
+              <div>
+                <strong>Sử dụng địa chỉ của tài khoản:</strong>
+                <p id="cart-default-address-info" style="margin:4px 0 0;font-size:12px;color:var(--muted)">
+                  Nguyễn Minh Anh · 0903 123 456<br>12 Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh
+                </p>
+              </div>
+            </label>
+
+            <!-- Nhập địa chỉ mới -->
+            <label class="address-choice" id="label-address-new">
+              <input type="radio" name="address_choice" value="new">
+              <div>
+                <strong>Giao đến địa chỉ nhận hàng khác</strong>
+                <p style="margin:4px 0 0;font-size:12px;color:var(--muted)">Nhập thông tin người nhận và địa chỉ mới bên dưới</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Form địa chỉ mới -->
+          <div id="new-address-form" style="display:none;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;padding:16px;background:#fafbfa;border:1px dashed var(--line);border-radius:12px">
+            <div class="field" style="grid-column:1 / 2">
+              <label for="new-recipient-name">Họ tên người nhận</label>
+              <input type="text" id="new-recipient-name" placeholder="Ví dụ: Trần Văn Nam">
+            </div>
+            <div class="field" style="grid-column:2 / 3">
+              <label for="new-recipient-phone">Số điện thoại</label>
+              <input type="tel" id="new-recipient-phone" placeholder="Ví dụ: 0912 345 678">
+            </div>
+            <div class="field" style="grid-column:1 / -1">
+              <label for="new-recipient-address">Địa chỉ chi tiết (Số nhà, đường, Phường/Xã, Quận/Huyện, Tỉnh/TP)</label>
+              <input type="text" id="new-recipient-address" placeholder="Ví dụ: 45 Lê Duẩn, Phường Bến Nghé, Quận 1, TP.HCM">
+            </div>
+          </div>
+        </div>
+
+        <!-- Phương thức thanh toán -->
+        <div class="panel">
+          <h2 style="font-size:18px;margin-bottom:12px">Hình thức thanh toán</h2>
+          <div class="payment-options">
+            <label class="payment-choice selected">
+              <input type="radio" name="payment" value="Tiền mặt khi nhận hàng (COD)" checked>
+              <div>
+                <strong>💵 Thanh toán bằng tiền mặt (COD)</strong>
+                <p style="margin:2px 0 0;font-size:12px;color:var(--muted)">Thanh toán bằng tiền mặt trực tiếp cho nhân viên giao hàng khi nhận sách.</p>
+              </div>
+            </label>
+
+            <label class="payment-choice">
+              <input type="radio" name="payment" value="Trực tuyến qua Chuyển khoản ngân hàng">
+              <div>
+                <strong>💳 Thanh toán trực tuyến (Chuyển khoản / Ví điện tử)</strong>
+                <p style="margin:2px 0 0;font-size:12px;color:var(--muted)">Chuyển khoản trực tiếp qua ngân hàng hoặc ví điện tử (Giao diện xác nhận).</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cột phải: Tóm tắt đơn hàng -->
+      <aside>
+        <div class="order-summary">
+          <h2>Tóm tắt thanh toán</h2>
+          <div class="summary-line">
+            <span>Số lượng sách:</span>
+            <strong id="summary-items-count">0</strong>
+          </div>
+          <div class="summary-line">
+            <span>Tạm tính:</span>
+            <strong id="summary-subtotal">0đ</strong>
+          </div>
+          <div class="summary-line">
+            <span>Phí vận chuyển:</span>
+            <strong id="summary-shipping">Miễn phí</strong>
+          </div>
+          <div class="summary-line total-line">
+            <span>Tổng thanh toán:</span>
+            <strong id="summary-total" style="color:var(--green)">0đ</strong>
+          </div>
+          <button class="button checkout-btn" id="checkout-btn" type="button">Xác nhận đặt hàng</button>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px">
+            🛡 Cam kết sách mới 100%, bảo hành đóng gói an toàn.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-row">
+      <div>
+        <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+        <p>Một góc nhỏ cho những câu chuyện lớn.</p>
+      </div>
+      <div class="footer-links">
+        <a href="account.html">Tài khoản</a>
+        <a href="orders.html">Lịch sử đơn hàng</a>
+        <a href="cart.html">Giỏ hàng</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tạo tài khoản mới — Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- Header đồng bộ tuyệt đối -->
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+      
+      <!-- Tìm kiếm nhanh trên Header -->
+      <form class="search-bar-basic" id="quick-search-form" style="max-width:320px;flex:1;margin:0 15px">
+        <input type="search" id="quick-search-input" placeholder="Tìm tên sách, tác giả..." aria-label="Tìm kiếm nhanh">
+        <button class="button button-small" type="submit" style="padding:0 14px;height:32px">Tìm</button>
+      </form>
+
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="books.html">Tủ sách</a>
+        <a href="categories.html">Danh mục</a>
+        <a href="orders.html">Đơn mua</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" id="header-account-link" href="login.html" aria-label="Tài khoản" style="color:var(--green);font-weight:700">
+          <span>♙</span><span id="header-user-name">Tài khoản</span>
+        </a>
+        <a class="icon-link" href="cart.html" aria-label="Giỏ hàng">
+          <span>♧</span><span>Giỏ hàng</span>
+          <span class="cart-badge" id="header-cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:30px;padding-bottom:60px">
+    <div style="max-width:480px;margin:0 auto 16px;font-size:13px;color:var(--muted)">
+      <a href="../index.html" style="color:var(--green)">Trang chủ</a> / 
+      <a href="login.html" style="color:var(--green)">Đăng nhập</a> / 
+      <span style="color:var(--ink)">Tạo tài khoản mới</span>
+    </div>
+
+    <!-- Form Đăng ký căn chỉnh dạng cột dọc đẹp mắt, đều đặn -->
+    <div class="auth-container" style="max-width:480px">
+      <div class="auth-header">
+        <span class="eyebrow">Trở thành bạn đọc thân thiết</span>
+        <h1>Tạo tài khoản bạn đọc</h1>
+        <p>Đăng ký để nhận ưu đãi và mua sách thuận tiện hơn.</p>
+      </div>
+
+      <form id="user-register-form">
+        <!-- Họ và tên -->
+        <div class="field">
+          <label for="reg-name">Họ và tên bạn đọc (*)</label>
+          <input type="text" id="reg-name" placeholder="Ví dụ: Trần Bảo Châu" required>
+        </div>
+
+        <!-- Tên đăng nhập -->
+        <div class="field">
+          <label for="reg-username">Tên đăng nhập (*)</label>
+          <input type="text" id="reg-username" placeholder="Ví dụ: baochau99" required autocomplete="username">
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label for="reg-email">Địa chỉ Email (*)</label>
+          <input type="email" id="reg-email" placeholder="Ví dụ: baochau@gmail.com" required>
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="field">
+          <label for="reg-phone">Số điện thoại (*)</label>
+          <input type="tel" id="reg-phone" placeholder="Ví dụ: 0918 222 333" required>
+        </div>
+
+        <!-- Địa chỉ nhận hàng -->
+        <div class="field">
+          <label for="reg-address">Địa chỉ nhận hàng mặc định</label>
+          <input type="text" id="reg-address" placeholder="Số nhà, tên đường, Phường, Quận, Thành phố...">
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="field">
+          <label for="reg-pass">Mật khẩu</label>
+          <input type="password" id="reg-pass" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password">
+        </div>
+
+        <!-- Xác nhận mật khẩu -->
+        <div class="field">
+          <label for="reg-pass2">Xác nhận mật khẩu</label>
+          <input type="password" id="reg-pass2" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password">
+        </div>
+
+        <button class="button auth-btn-submit" type="submit">Hoàn tất đăng ký</button>
+
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5">
+          * Giao diện mô phỏng: Sau khi đăng ký thành công, hệ thống tự động đăng nhập và lưu tài khoản.
+        </p>
+      </form>
+
+      <!-- Liên kết quay về Đăng nhập -->
+      <div class="auth-footer">
+        <p>Đã có tài khoản tại Mộc Books?</p>
+        <a class="button button-small" href="login.html" style="display:inline-flex;padding:0 24px;height:38px;align-items:center;background:#eef2eb;color:#334d3b;border:1px solid #dce0da">
+          ← Quay lại trang Đăng nhập
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-row">
+      <div>
+        <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+        <p>Một góc nhỏ cho những câu chuyện lớn.</p>
+      </div>
+      <div class="footer-links">
+        <a href="login.html">Tài khoản</a>
+        <a href="orders.html">Lịch sử đơn hàng</a>
+        <a href="cart.html">Giỏ hàng</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
