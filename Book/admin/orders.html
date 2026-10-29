@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý Đơn hàng — Quản trị Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">M</span>Mộc Admin</a>
+      <div class="side-label">QUẢN LÝ HỆ THỐNG</div>
+      <nav class="side-nav">
+        <a href="dashboard.html">📊 Tổng quan</a>
+        <a class="current" href="orders.html">📦 Quản lý Đơn hàng</a>
+        <a href="products.html">📚 Quản lý Sách &amp; Tủ sách</a>
+        <a href="customers.html">👥 Quản lý Bạn đọc / User</a>
+        <a href="stats.html">📈 Báo cáo Thống kê Top 5</a>
+      </nav>
+      <div class="side-label" style="margin-top:20px">LỐI TẮT</div>
+      <nav class="side-nav">
+        <a href="../index.html" target="_blank">🌐 Xem cửa hàng bạn đọc ↗</a>
+        <a href="javascript:void(0)" id="admin-logout-btn" style="color:#e89f92">🚪 Đăng xuất</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-top">
+        <div class="muted">Quản trị Đơn hàng &amp; Trạng thái luân chuyển</div>
+        <div class="admin-user">
+          <div class="avatar">AD</div>
+          <div>
+            <strong>Quản trị viên</strong>
+            <div style="font-size:10px;color:var(--muted)">admin@mocbooks.vn</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div class="admin-title">
+          <div>
+            <h1>Quản lý Đơn hàng</h1>
+            <p>Xử lý duyệt đơn, cập nhật trạng thái xuôi (không đổi ngược) và lọc đa tiêu chí.</p>
+          </div>
+        </div>
+
+        <!-- Bộ lọc đơn hàng nâng cao -->
+        <div class="admin-panel" style="margin-bottom:16px;padding:16px 20px">
+          <div style="font-size:12px;font-weight:700;color:#354a3c;margin-bottom:12px">
+            🔍 Bộ lọc tìm kiếm đơn hàng:
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end">
+            <!-- Lọc trạng thái -->
+            <div class="field" style="min-width:160px;flex:1">
+              <label for="admin-order-status-filter">Tình trạng đơn</label>
+              <select id="admin-order-status-filter" style="width:100%;height:38px">
+                <option value="">Tất cả trạng thái</option>
+                <option value="Chưa xác nhận">Chưa xác nhận</option>
+                <option value="Đã xác nhận">Đã xác nhận</option>
+                <option value="Đã giao">Đã giao hàng</option>
+                <option value="Đã hủy">Đã hủy đơn</option>
+              </select>
+            </div>
+
+            <!-- Lọc ngày bắt đầu -->
+            <div class="field" style="min-width:140px;flex:1">
+              <label for="admin-order-from-date">Từ ngày đặt</label>
+              <input type="date" id="admin-order-from-date" style="width:100%;height:38px">
+            </div>
+
+            <!-- Lọc ngày kết thúc -->
+            <div class="field" style="min-width:140px;flex:1">
+              <label for="admin-order-to-date">Đến ngày đặt</label>
+              <input type="date" id="admin-order-to-date" style="width:100%;height:38px">
+            </div>
+
+            <!-- Lọc địa điểm giao hàng -->
+            <div class="field" style="min-width:160px;flex:1">
+              <label for="admin-order-location-filter">Địa điểm (Quận, TP)</label>
+              <input type="text" id="admin-order-location-filter" placeholder="VD: Quận 1, Thủ Đức..." style="width:100%;height:38px">
+            </div>
+
+            <button class="button button-small" id="admin-order-reset-filter" type="button" style="height:38px;padding:0 16px;background:#eef2eb;color:#395041;border:1px solid #dce0da">
+              Xóa bộ lọc
+            </button>
+          </div>
+        </div>
+
+        <!-- Bảng danh sách đơn hàng -->
+        <div class="admin-panel" style="padding:0;overflow:hidden">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã đơn</th>
+                  <th>Khách hàng</th>
+                  <th>Ngày đặt</th>
+                  <th>Địa chỉ / Quận</th>
+                  <th class="text-right">Tổng tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Cập nhật trạng thái (Xuôi)</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-tbody">
+                <!-- Rendered by main.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-note" style="margin-top:16px">
+          💡 <strong>Quy tắc nghiệp vụ:</strong> Trạng thái đơn hàng chỉ cho phép chuyển xuôi theo luồng: 
+          <em>Chưa xác nhận → Đã xác nhận → Đã giao (hoặc Đã hủy)</em>. Tuyệt đối không cho phép quay ngược lại các bước trước đó.
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal xem chi tiết đơn hàng -->
+  <div class="mb-modal-overlay" id="order-detail-modal">
+    <div class="mb-modal">
+      <button class="mb-modal-close" type="button" onclick="closeOrderDetailModal()">✕</button>
+      <h2 id="modal-order-id" style="font-size:20px;margin-bottom:12px">Chi tiết đơn hàng</h2>
+      <div id="modal-order-content">
+        <!-- Content inserted dynamically -->
+      </div>
+      <div style="margin-top:20px;text-align:right">
+        <button class="button button-small" type="button" onclick="closeOrderDetailModal()">Đóng cửa sổ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>
