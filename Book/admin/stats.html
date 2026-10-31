@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Báo cáo Thống kê — Quản trị Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">M</span>Mộc Admin</a>
+      <div class="side-label">QUẢN LÝ HỆ THỐNG</div>
+      <nav class="side-nav">
+        <a href="dashboard.html">📊 Tổng quan</a>
+        <a href="orders.html">📦 Quản lý Đơn hàng</a>
+        <a href="products.html">📚 Quản lý Sách &amp; Tủ sách</a>
+        <a href="customers.html">👥 Quản lý Bạn đọc / User</a>
+        <a class="current" href="stats.html">📈 Báo cáo Thống kê Top 5</a>
+      </nav>
+      <div class="side-label" style="margin-top:20px">LỐI TẮT</div>
+      <nav class="side-nav">
+        <a href="../index.html" target="_blank">🌐 Xem cửa hàng bạn đọc ↗</a>
+        <a href="javascript:void(0)" id="admin-logout-btn" style="color:#e89f92">🚪 Đăng xuất</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-top">
+        <div class="muted">Báo cáo Doanh thu &amp; Thống kê Khách hàng VIP</div>
+        <div class="admin-user">
+          <div class="avatar">AD</div>
+          <div>
+            <strong>Quản trị viên</strong>
+            <div style="font-size:10px;color:var(--muted)">admin@mocbooks.vn</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div class="admin-title">
+          <div>
+            <h1>Thống kê Top 5 Khách hàng</h1>
+            <p>Xếp hạng 5 khách hàng có mức chi tiêu mua sách cao nhất trong khoảng thời gian đã chọn.</p>
+          </div>
+        </div>
+
+        <!-- Bộ lọc thời gian thống kê -->
+        <div class="admin-panel" style="margin-bottom:16px;padding:16px 20px">
+          <div style="font-size:12px;font-weight:700;color:#354a3c;margin-bottom:12px">
+            📅 Khoảng thời gian thống kê:
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap">
+            <div class="field" style="min-width:180px;flex:1">
+              <label for="stat-from-date">Từ ngày</label>
+              <input type="date" id="stat-from-date" style="width:100%;height:38px">
+            </div>
+            <div class="field" style="min-width:180px;flex:1">
+              <label for="stat-to-date">Đến ngày</label>
+              <input type="date" id="stat-to-date" style="width:100%;height:38px">
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="button button-small" id="stat-run-btn" type="button" style="height:38px;padding:0 22px">
+                Chạy thống kê
+              </button>
+              <button class="button button-small" id="stat-reset-btn" type="button" style="height:38px;padding:0 16px;background:#eef2eb;color:#395041;border:1px solid #dce0da">
+                Tất cả thời gian
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bảng xếp hạng Top 5 -->
+        <div class="admin-panel" style="padding:0;overflow:hidden">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:60px">Hạng</th>
+                  <th>Họ tên &amp; Email khách hàng</th>
+                  <th class="text-center">Số lượng đơn</th>
+                  <th>Đơn gần nhất</th>
+                  <th class="text-right">Tổng tiền mua sách (VND)</th>
+                  <th class="text-center">Xem chi tiết đơn hàng</th>
+                </tr>
+              </thead>
+              <tbody id="admin-top5-tbody">
+                <!-- Rendered by main.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-note" style="margin-top:16px">
+          💡 <strong>Quy tắc tính toán:</strong> Dữ liệu được sắp xếp tự động <strong>giảm dần theo tổng giá trị tiền mua</strong>. Các đơn hàng ở trạng thái "Đã hủy" sẽ tự động được loại trừ khỏi doanh số chi tiêu của khách hàng.
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+
+  <script src="../main.js"></script>
+</body>
+</html>
