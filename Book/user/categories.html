@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh mục sách — Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header đồng bộ -->
+  <header class="header">
+    <div class="wrap header-row">
+      <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+      
+      <!-- Tìm kiếm nhanh trên Header -->
+      <form class="search-bar-basic" id="quick-search-form" style="max-width:320px;flex:1;margin:0 15px">
+        <input type="search" id="quick-search-input" placeholder="Tìm tên sách, tác giả..." aria-label="Tìm kiếm nhanh">
+        <button class="button button-small" type="submit" style="padding:0 14px;height:32px">Tìm</button>
+      </form>
+
+      <nav class="nav">
+        <a href="books.html">Tủ sách</a>
+        <a href="categories.html" style="color:var(--green);font-weight:700">Danh mục</a>
+        <a href="orders.html">Đơn mua</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="icon-link" id="header-account-link" href="login.html" aria-label="Tài khoản">
+          <span>♙</span><span id="header-user-name">Tài khoản</span>
+        </a>
+        <a class="icon-link" href="cart.html" aria-label="Giỏ hàng">
+          <span>♧</span><span>Giỏ hàng</span>
+          <span class="cart-badge" id="header-cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:24px;padding-bottom:60px">
+    <!-- Breadcrumb điều hướng -->
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px">
+      <a href="../index.html" style="color:var(--green)">Trang chủ</a> / 
+      <span style="color:var(--ink)">Danh mục sách</span>
+    </div>
+
+    <div class="section-heading" style="margin-bottom:24px">
+      <div>
+        <span class="eyebrow">Khám phá theo thể loại</span>
+        <h1 style="font-size:32px;margin:6px 0">Danh mục sách tuyển chọn</h1>
+        <p style="color:var(--muted);font-size:14px;margin:0">
+          Chọn một chủ đề để mở ra những góc nhìn và thế giới tri thức mới mẻ.
+        </p>
+      </div>
+      <div>
+        <a class="text-link" href="javascript:void(0)" id="cat-view-all-btn">Xem tất cả sách →</a>
+      </div>
+    </div>
+
+    <!-- Lưới các thẻ Danh mục nổi bật -->
+    <div class="category-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;margin-bottom:36px">
+      <a class="category-card active" href="javascript:void(0)" data-category="" id="card-all">
+        <span class="category-icon">📚</span>
+        <h3>Tất cả thể loại</h3>
+        <p id="count-all">Toàn bộ kho sách</p>
+      </a>
+
+      <a class="category-card" href="javascript:void(0)" data-category="Văn học">
+        <span class="category-icon">📖</span>
+        <h3>Văn học</h3>
+        <p id="count-van-hoc">Tác phẩm kinh điển & hiện đại</p>
+      </a>
+
+      <a class="category-card" href="javascript:void(0)" data-category="Kỹ năng sống">
+        <span class="category-icon">🌿</span>
+        <h3>Kỹ năng sống</h3>
+        <p id="count-ky-nang">Phát triển bản thân & tâm lý</p>
+      </a>
+
+      <a class="category-card" href="javascript:void(0)" data-category="Khoa học">
+        <span class="category-icon">🔭</span>
+        <h3>Khoa học & Khám phá</h3>
+        <p id="count-khoa-hoc">Vũ trụ, tri thức nhân loại</p>
+      </a>
+
+      <a class="category-card" href="javascript:void(0)" data-category="Sách thiếu nhi">
+        <span class="category-icon">🧸</span>
+        <h3>Sách thiếu nhi</h3>
+        <p id="count-thieu-nhi">Ươm mầm sáng tạo & yêu thương</p>
+      </a>
+    </div>
+
+    <!-- Tiêu đề danh sách sách theo danh mục đã chọn -->
+    <div class="section-heading" style="margin-bottom:20px;padding-top:12px;border-top:1px solid var(--line)">
+      <div>
+        <span class="eyebrow">Danh sách đầu sách</span>
+        <h2 style="font-size:24px;margin:4px 0" id="cat-section-title">Đang xem: Tất cả thể loại</h2>
+        <p id="cat-section-desc" style="color:var(--muted);font-size:13px;margin:0">Hiển thị các tựa sách hay nhất.</p>
+      </div>
+    </div>
+
+    <!-- Lưới sách -->
+    <div class="product-grid" id="category-book-list">
+      <!-- Rendered by main.js -->
+    </div>
+
+    <!-- Phân trang tĩnh mock UI -->
+    <div class="pagination" id="category-pagination" aria-label="Phân trang danh mục">
+      <!-- Rendered by main.js -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-row">
+      <div>
+        <a class="brand" href="../index.html"><span class="brand-mark">M</span>Mộc Books</a>
+        <p>Một góc nhỏ cho những câu chuyện lớn.</p>
+      </div>
+      <div class="footer-links">
+        <a href="account.html">Tài khoản</a>
+        <a href="orders.html">Lịch sử đơn hàng</a>
+        <a href="cart.html">Giỏ hàng</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
