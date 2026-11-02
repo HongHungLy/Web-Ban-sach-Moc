@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chi tiết Đơn hàng — Quản trị Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">M</span>Mộc Admin</a>
+      <div class="side-label">QUẢN LÝ HỆ THỐNG</div>
+      <nav class="side-nav">
+        <a href="dashboard.html">📊 Tổng quan</a>
+        <a class="current" href="orders.html">📦 Quản lý Đơn hàng</a>
+        <a href="products.html">📚 Quản lý Sách &amp; Tủ sách</a>
+        <a href="customers.html">👥 Quản lý Bạn đọc / User</a>
+        <a href="stats.html">📈 Báo cáo Thống kê Top 5</a>
+      </nav>
+      <div class="side-label" style="margin-top:20px">LỐI TẮT</div>
+      <nav class="side-nav">
+        <a href="../index.html" target="_blank">🌐 Xem cửa hàng bạn đọc ↗</a>
+        <a href="javascript:void(0)" id="admin-logout-btn" style="color:#e89f92">🚪 Đăng xuất</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-top">
+        <div class="muted">Quản trị Đơn hàng &amp; Trạng thái luân chuyển</div>
+        <div class="admin-user">
+          <div class="avatar">AD</div>
+          <div>
+            <strong>Quản trị viên</strong>
+            <div style="font-size:11px;color:var(--muted)">admin@mocbooks.vn</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <!-- Nút quay lại đầu trang -->
+        <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+          <a class="button button-small" href="orders.html" style="background:#eef2eb;color:#354a3c;border:1px solid #dce0da;text-decoration:none">
+            ← Quay lại Quản lý Đơn hàng
+          </a>
+          <span style="font-size:12px;color:var(--muted)">Trang chi tiết xử lý đơn đặt hàng</span>
+        </div>
+
+        <div class="admin-title">
+          <div>
+            <h1 id="od-title">Chi tiết Đơn hàng #MB-2025-0000</h1>
+            <p id="od-subtitle">Thông tin người mua, địa chỉ nhận hàng và danh mục ấn phẩm đã đặt.</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span id="od-status-badge" class="status" style="font-size:13px;padding:6px 14px">Chưa xác nhận</span>
+            <a class="button button-small" href="orders.html" style="background:#354a3c;color:white;text-decoration:none">
+              ✕ Đóng trang
+            </a>
+          </div>
+        </div>
+
+        <!-- Thẻ tóm tắt thông tin đơn hàng -->
+        <div class="stat-grid" style="margin-bottom:20px">
+          <div class="stat-card">
+            <p>Khách hàng đặt</p>
+            <strong id="od-card-customer" style="font-size:17px">-</strong>
+            <small id="od-card-phone">-</small>
+          </div>
+          <div class="stat-card">
+            <p>Ngày ghi nhận đơn</p>
+            <strong id="od-card-date" style="font-size:17px">-</strong>
+            <small id="od-card-id">-</small>
+          </div>
+          <div class="stat-card">
+            <p>Hình thức thanh toán</p>
+            <strong id="od-card-payment" style="font-size:16px;color:#354a3c">-</strong>
+            <small>Giao hàng tận nơi</small>
+          </div>
+          <div class="stat-card">
+            <p>Tổng tiền đơn hàng</p>
+            <strong id="od-card-total" style="font-size:18px;color:var(--green)">0đ</strong>
+            <small id="od-card-shipping">Đã gồm phí ship</small>
+          </div>
+        </div>
+
+        <!-- 2 Cột: Bên trái là Thông tin giao nhận + Cập nhật trạng thái, Bên phải là Danh sách sách -->
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:20px;margin-bottom:24px">
+          <!-- Cột thông tin khách hàng & Chuyển trạng thái -->
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div class="admin-panel">
+              <h2 style="font-size:15px;color:#244130;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #eef1ed">
+                👤 Thông tin giao nhận
+              </h2>
+              <div style="font-size:13px;line-height:1.8;color:#49544c">
+                <div><span style="color:var(--muted)">Người nhận:</span> <strong id="od-customer-name" style="color:var(--ink)">-</strong></div>
+                <div><span style="color:var(--muted)">Số điện thoại:</span> <strong id="od-customer-phone">-</strong></div>
+                <div><span style="color:var(--muted)">Email bạn đọc:</span> <span id="od-customer-email">-</span></div>
+                <div><span style="color:var(--muted)">Khu vực / Quận:</span> <span id="od-customer-location">-</span></div>
+                <div style="margin-top:4px"><span style="color:var(--muted)">Địa chỉ chi tiết:</span><br>
+                  <p id="od-customer-address" style="margin:2px 0 0;padding:10px 12px;background:#fbfbf9;border:1px solid #edf0eb;border-radius:8px;line-height:1.5;color:#334237">-</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel Cập nhật trạng thái -->
+            <div class="admin-panel">
+              <h2 style="font-size:15px;color:#244130;margin:0 0 10px">
+                🔄 Cập nhật trạng thái (Xuôi)
+              </h2>
+              <p style="font-size:12px;color:var(--muted);margin:0 0 14px;line-height:1.5">
+                Chuyển trạng thái theo quy tắc: <em>Chưa xác nhận → Đã xác nhận → Đã giao / Đã hủy</em>.
+              </p>
+              <div style="display:flex;gap:10px;align-items:center">
+                <select id="od-status-select" style="flex:1;height:40px;padding:0 10px;border:1px solid #dce0da;border-radius:8px;font-size:13px">
+                  <!-- Rendered dynamically -->
+                </select>
+                <button class="button button-small" id="od-update-status-btn" type="button" style="height:40px;padding:0 18px">
+                  Cập nhật
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột danh sách ấn phẩm -->
+          <div class="admin-panel" style="padding:0;overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid #edf0eb;display:flex;justify-content:space-between;align-items:center">
+              <h2 style="font-size:15px;color:#244130;margin:0">📚 Danh sách ấn phẩm trong đơn</h2>
+              <span id="od-items-count-badge" style="font-size:12px;color:var(--muted)">0 ấn phẩm</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Tên ấn phẩm</th>
+                    <th class="text-right">Đơn giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-right">Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody id="od-items-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tóm tắt thanh toán -->
+            <div style="padding:16px 20px;background:#fbfcfb;border-top:1px solid #eef1ed">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                <span style="color:var(--muted)">Tạm tính tiền sách:</span>
+                <strong id="od-subtotal" style="color:#354a3c">0đ</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px">
+                <span style="color:var(--muted)">Phí vận chuyển giao hàng:</span>
+                <strong id="od-shipping" style="color:#354a3c">0đ</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:16px;padding-top:10px;border-top:1px dashed #dce2da;color:var(--green)">
+                <strong>Tổng thanh toán:</strong>
+                <strong id="od-total" style="font-size:18px">0đ</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>

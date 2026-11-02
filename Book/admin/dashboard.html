@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bảng điều khiển — Quản trị Mộc Books</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <!-- Sidebar điều hướng Quản trị -->
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">M</span>Mộc Admin</a>
+      <div class="side-label">QUẢN LÝ HỆ THỐNG</div>
+      <nav class="side-nav">
+        <a class="current" href="dashboard.html">📊 Tổng quan</a>
+        <a href="orders.html">📦 Quản lý Đơn hàng <span class="cart-badge" id="sidebar-order-count" style="margin-left:6px;background:#e7c68f;color:#223b2e">0</span></a>
+        <a href="products.html">📚 Quản lý Sách &amp; Tủ sách</a>
+        <a href="customers.html">👥 Quản lý Bạn đọc / User</a>
+        <a href="stats.html">📈 Báo cáo Thống kê Top 5</a>
+      </nav>
+      <div class="side-label" style="margin-top:20px">LỐI TẮT</div>
+      <nav class="side-nav">
+        <a href="../index.html" target="_blank">🌐 Xem cửa hàng bạn đọc ↗</a>
+        <a href="javascript:void(0)" id="admin-logout-btn" style="color:#e89f92">🚪 Đăng xuất</a>
+      </nav>
+    </aside>
+
+    <!-- Nội dung chính -->
+    <div class="admin-main">
+      <header class="admin-top">
+        <div></div>
+        <div class="admin-user">
+          <div class="avatar">AD</div>
+          <div>
+            <strong>Quản trị viên</strong>
+            <div style="font-size:10px;color:var(--muted)">admin@mocbooks.vn</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div class="admin-title">
+          <div>
+            <h1>Tổng quan hoạt động</h1>
+            <p>Theo dõi doanh thu, tình trạng đơn hàng và kho sách hiện hành.</p>
+          </div>
+          <div>
+            <a class="button button-small" href="product-form.html">+ Thêm sách mới</a>
+          </div>
+        </div>
+
+        <!-- 4 Thẻ chỉ số chính -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <p>Doanh thu ghi nhận</p>
+            <strong id="stat-total-revenue" style="color:var(--green)">0đ</strong>
+            <small>Đã trừ đơn hủy</small>
+          </div>
+          <div class="stat-card">
+            <p>Tổng đơn hàng</p>
+            <strong id="stat-total-orders">0</strong>
+            <small>Tất cả trạng thái</small>
+          </div>
+          <div class="stat-card">
+            <p>Tựa sách đang bán</p>
+            <strong id="stat-active-products">0</strong>
+            <small>Không tính sách đã ẩn</small>
+          </div>
+          <div class="stat-card">
+            <p>Khách hàng thành viên</p>
+            <strong id="stat-total-customers">0</strong>
+            <small>Tài khoản đã đăng ký</small>
+          </div>
+        </div>
+
+        <!-- Biểu đồ & Top sách bán chạy -->
+        <div class="admin-columns">
+          <section class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Biểu đồ doanh số tuần gần nhất</h2>
+              <span style="font-size:11px;color:var(--muted)">Đơn vị: Nghìn đồng</span>
+            </div>
+            <div class="bar-chart" aria-label="Biểu đồ doanh số">
+              <div class="bar" style="height:48%" title="T2: 1.250k"></div>
+              <div class="bar" style="height:62%" title="T3: 1.820k"></div>
+              <div class="bar" style="height:35%" title="T4: 980k"></div>
+              <div class="bar" style="height:78%" title="T5: 2.450k"></div>
+              <div class="bar" style="height:92%" title="T6: 3.100k"></div>
+              <div class="bar" style="height:85%" title="T7: 2.750k"></div>
+              <div class="bar" style="height:56%" title="CN: 1.620k"></div>
+            </div>
+            <div class="chart-labels">
+              <span>Thứ 2</span>
+              <span>Thứ 3</span>
+              <span>Thứ 4</span>
+              <span>Thứ 5</span>
+              <span>Thứ 6</span>
+              <span>Thứ 7</span>
+              <span>CN</span>
+            </div>
+          </section>
+
+          <section class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Sách bán chạy nhất</h2>
+              <a href="products.html">Xem kho sách →</a>
+            </div>
+            <div class="mini-rows" id="admin-top-books">
+              <!-- Rendered by main.js -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Lối tắt quản lý -->
+        <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:15px">
+          <div class="admin-panel" style="padding:16px">
+            <h3 style="font-size:14px;margin-bottom:6px">📦 Xử lý đơn hàng</h3>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:12px">Kiểm tra và duyệt các đơn hàng mới đặt từ độc giả.</p>
+            <a class="button button-small" href="orders.html" style="width:100%;text-align:center">Vào trang đơn hàng →</a>
+          </div>
+          <div class="admin-panel" style="padding:16px">
+            <h3 style="font-size:14px;margin-bottom:6px">📚 Kho sách &amp; Hình thức</h3>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:12px">Xem danh sách ấn phẩm, phân loại, bìa cứng / bìa mềm.</p>
+            <a class="button button-small" href="products.html" style="width:100%;text-align:center">Vào kho sách →</a>
+          </div>
+          <div class="admin-panel" style="padding:16px">
+            <h3 style="font-size:14px;margin-bottom:6px">📈 Thống kê Top 5</h3>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:12px">Lọc khách hàng chi tiêu cao nhất theo thời gian.</p>
+            <a class="button button-small" href="stats.html" style="width:100%;text-align:center">Xem báo cáo →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>
